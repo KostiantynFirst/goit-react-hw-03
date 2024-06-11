@@ -9,7 +9,7 @@ const ContactList = ({filteredContacts, handleDeleteContact}) => {
 
             return (
                     <PhonebookContactsListItem key={id}>
-                    <PhonebookContactsListItemName>{name}:{number}</PhonebookContactsListItemName>
+                    <PhonebookContactsListItemName>{name}: {number}</PhonebookContactsListItemName>
                     <DeleteBtn onClick={() => handleDeleteContact(id)}>Delete</DeleteBtn>
                     </PhonebookContactsListItem>
             )

@@ -32,3 +32,4 @@ export const PhonebookContactsHeading = styled.h3`
   padding: 0;
   margin-bottom: 20px;
 `;
+
