@@ -11,16 +11,16 @@ export const PhonebookForm = styled(Form)`
 
 export const PhonebookFormContainer = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   margin-bottom: 10px;
+  width: 100%;
 `;
 
 export const PhonebookFormLabel = styled.label`
   font-size: 18px;
   font-weight: bold;
-  margin-right: 10px;
-  padding: 5px;
-  width: 100px;
+  margin-bottom: 5px;
 `;
 
 export const PhonebookFormInput = styled(Field)`
