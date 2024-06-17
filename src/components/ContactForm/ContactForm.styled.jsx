@@ -44,6 +44,11 @@ export const ErrMessageStyled = styled(ErrorMessage)`
   color: red;
   font-size: 14px;
   margin-top: 5px;
+  width: 300px;
+
+    @media (max-width: 768px) {
+    width: 80%;
+  }
   `
 ;
 
