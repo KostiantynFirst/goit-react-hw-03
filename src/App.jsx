@@ -3,14 +3,120 @@ import { nanoid } from "nanoid";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import AddContactForm from "./components/AddContactForm/AddContactForm";
+import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/Contacts/Contacts";
-import Filter from "./components/Filter/Filter";
+import Searchbox from "./components/Searchbox/Searchbox";
 
 import useLocalStorage from "./hooks/userLocalStorage.";
 
 
 import { PhonebookContainer, PhonebookHeadings, PhonebookContacts, PhonebookContactsHeading } from "./App.styled";
+
+
+// function App() {
+
+//   const INITIAL_CONTACTS = [
+//     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+//     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+//     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+//     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+//   ];
+
+// const [contacts, setContacts] = useLocalStorage('contacts', INITIAL_CONTACTS);
+//   const [filter, setFilter] = useState('');
+//   const [name, setName] = useState('');
+//   const [number, setNumber] = useState('');
+
+//    const handleSubmit = e => {
+//       e.preventDefault();
+
+//       const isNameExist = contacts.some(
+//         contact => contact.name.toLowerCase() === name.toLowerCase(),
+//       );
+      
+//       const isNumberExist = contacts.some(
+//         contact => contact.number === number,
+//       );
+  
+//       if (isNameExist) {
+//         toast.error('Contact with such name already exists!', {
+//           autoClose: 3000
+//         });
+//         resetForm();
+//         return;
+//       }
+  
+//       if (isNumberExist) {
+//         toast.error('Contact with such number already exists!', {
+//           autoClose: 3000
+//         });
+//         resetForm();
+//         return;
+//       }
+  
+//       const newContact = { id: nanoid(), name, number };
+//         setContacts((prevContacts) => [...prevContacts, newContact]);
+//         resetForm();
+//       };
+
+  
+//    const resetForm = () => {
+//         setName('');
+//         setNumber('');
+//     }   
+
+//   const changeFilter = e => {
+//     setFilter(e.currentTarget.value);
+//   };
+
+//   const filteredContacts = contacts.filter(contact =>
+//     contact.name.toLowerCase().includes(filter.toLowerCase())
+//   );
+
+//   const handleDeleteContact = contactId => {
+//     setContacts((prevContacts) => 
+//       prevContacts.filter(contact => contact.id !== contactId)
+//     );
+//   };
+
+//   return (
+ 
+//     <PhonebookContainer>
+//       <PhonebookHeadings>Phonebook</PhonebookHeadings>
+    
+//   <ContactForm 
+//     handleSubmit={handleSubmit}
+//     name={name}
+//     number={number}
+//     onInputName={(e) => setName(e.currentTarget.value)}
+//     onInputNumber={(e) => setNumber(e.currentTarget.value)}
+//       />
+      
+//   <PhonebookContacts>
+//     <PhonebookContactsHeading>Contacts</PhonebookContactsHeading>
+     
+//   <Searchbox 
+//     value={filter} 
+//     onChange={changeFilter} 
+//   />
+
+//   <ContactList 
+//     filteredContacts={filteredContacts}
+//     handleDeleteContact={handleDeleteContact} 
+//   />
+
+// <ToastContainer/>
+
+// </PhonebookContacts>
+    
+//     </PhonebookContainer> 
+    
+//     );
+ 
+
+// }
+
+// export default App;
 
 
 function App() {
@@ -22,98 +128,54 @@ function App() {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ];
 
-const [contacts, setContacts] = useLocalStorage('contacts', INITIAL_CONTACTS);
+  const [contacts, setContacts] = useLocalStorage('contacts', INITIAL_CONTACTS);
   const [filter, setFilter] = useState('');
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
 
-   const handleSubmit = e => {
-      e.preventDefault();
+  const handleSubmit = ({ name, number }) => {
+    const isNameExist = contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase());
+    const isNumberExist = contacts.some(contact => contact.number === number);
 
-      const isNameExist = contacts.some(
-        contact => contact.name.toLowerCase() === name.toLowerCase(),
-      );
-      
-      const isNumberExist = contacts.some(
-        contact => contact.number === number,
-      );
-  
-      if (isNameExist) {
-        toast.error('Contact with such name already exists!', {
-          autoClose: 3000
-        });
-        resetForm();
-        return;
-      }
-  
-      if (isNumberExist) {
-        toast.error('Contact with such number already exists!', {
-          autoClose: 3000
-        });
-        resetForm();
-        return;
-      }
-  
-      const newContact = { id: nanoid(), name, number };
-        setContacts((prevContacts) => [...prevContacts, newContact]);
-        resetForm();
-      };
+    if (isNameExist) {
+      toast.error('Contact with such name already exists!', { autoClose: 3000 });
+      return;
+    }
 
-  
-   const resetForm = () => {
-        setName('');
-        setNumber('');
-    }   
+    if (isNumberExist) {
+      toast.error('Contact with such number already exists!', { autoClose: 3000 });
+      return;
+    }
 
-  const changeFilter = e => {
-    setFilter(e.currentTarget.value);
+    const newContact = { id: nanoid(), name, number };
+    setContacts(prevContacts => [...prevContacts, newContact]);
   };
+
+  const changeFilter = e => setFilter(e.currentTarget.value);
 
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
   const handleDeleteContact = contactId => {
-    setContacts((prevContacts) => 
-      prevContacts.filter(contact => contact.id !== contactId)
-    );
+    setContacts(prevContacts => prevContacts.filter(contact => contact.id !== contactId));
   };
 
   return (
- 
     <PhonebookContainer>
       <PhonebookHeadings>Phonebook</PhonebookHeadings>
-    
-  <AddContactForm 
-    handleSubmit={handleSubmit}
-    name={name}
-    number={number}
-    onInputName={(e) => setName(e.currentTarget.value)}
-    onInputNumber={(e) => setNumber(e.currentTarget.value)}
-  />
-  <PhonebookContacts>
-    <PhonebookContactsHeading>Contacts</PhonebookContactsHeading>
-     
-  <Filter 
-    value={filter} 
-    onChange={changeFilter} 
-  />
 
-  <ContactList 
-    filteredContacts={filteredContacts}
-    handleDeleteContact={handleDeleteContact} 
-  />
+      <ContactForm handleSubmit={handleSubmit} />
 
-<ToastContainer/>
+      <PhonebookContacts>
+        <PhonebookContactsHeading>Contacts</PhonebookContactsHeading>
 
-</PhonebookContacts>
-    
+        <Searchbox value={filter} onChange={changeFilter} />
 
-    </PhonebookContainer> 
-    
-    );
- 
+        <ContactList filteredContacts={filteredContacts} handleDeleteContact={handleDeleteContact} />
 
+        <ToastContainer />
+      </PhonebookContacts>
+    </PhonebookContainer>
+  );
 }
 
 export default App;

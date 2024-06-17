@@ -1,6 +1,6 @@
-import { FilterContainer, FilterLabel, FilterInput } from "./Filter.styled";
+import { FilterContainer, FilterLabel, FilterInput } from "./Searchbox.styled";
 
-const Filter = ({ filterValue, onChange }) => {
+const Searchbox = ({ filterValue, onChange }) => {
     return (
       <FilterContainer>
         <FilterLabel>Find contacts by name:</FilterLabel>
@@ -14,4 +14,4 @@ const Filter = ({ filterValue, onChange }) => {
     );
 };
   
-export default Filter;
+export default Searchbox;

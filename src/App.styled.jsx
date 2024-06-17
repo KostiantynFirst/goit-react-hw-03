@@ -4,6 +4,7 @@ export const PhonebookContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
   margin-top: 50px;
 
   @media (max-width: 768px) {

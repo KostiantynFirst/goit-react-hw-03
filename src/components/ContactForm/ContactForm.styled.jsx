@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const PhonebookForm = styled.form`
+import { Form, Field, ErrorMessage } from 'formik';
+
+export const PhonebookForm = styled(Form)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +23,7 @@ export const PhonebookFormLabel = styled.label`
   width: 100px;
 `;
 
-export const PhonebookFormInput = styled.input`
+export const PhonebookFormInput = styled(Field)`
   font-size: 16px;
   padding: 5px;
   border-radius: 5px;
@@ -31,7 +33,19 @@ export const PhonebookFormInput = styled.input`
   @media (max-width: 768px) {
     width: 80%;
   }
+
+  &.error {
+    border-color: red;
+  }
 `;
+
+
+export const ErrMessageStyled = styled(ErrorMessage)`
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  `
+;
 
 export const PhonebookBtn = styled.button`
   font-size: 18px;
