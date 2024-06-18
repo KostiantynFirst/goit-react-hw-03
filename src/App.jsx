@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import ContactForm from "./components/ContactForm/ContactForm";
-import ContactList from "./components/Contacts/Contacts";
+import ContactList from "./components/ContactList/ContactList"
 import Searchbox from "./components/Searchbox/Searchbox";
 
 import useLocalStorage from "./hooks/userLocalStorage.";

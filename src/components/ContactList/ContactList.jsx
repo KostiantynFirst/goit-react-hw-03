@@ -1,5 +1,5 @@
 
-import { PhonebookContactsList, PhonebookContactsListItem, PhonebookContactsListItemName, DeleteBtn } from "./Contacts.styled";
+import { PhonebookContactsList, PhonebookContactsListItem, PhonebookContactsListItemName, DeleteBtn } from "./ContactList.styled";
 
 const ContactList = ({filteredContacts, handleDeleteContact}) => {
         return (
