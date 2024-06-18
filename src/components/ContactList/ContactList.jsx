@@ -1,23 +1,42 @@
 
-import { PhonebookContactsList, PhonebookContactsListItem, PhonebookContactsListItemName, DeleteBtn } from "./ContactList.styled";
+// const ContactList = ({filteredContacts, handleDeleteContact}) => {
+//         return (
+//         <PhonebookContactsList>
 
-const ContactList = ({filteredContacts, handleDeleteContact}) => {
-        return (
-        <PhonebookContactsList>
+//             {filteredContacts.map(({name, number, id}) => {
 
-            {filteredContacts.map(({name, number, id}) => {
+//             return (
+//                     <PhonebookContactsListItem key={id}>
+//                     <PhonebookContactsListItemName>{name}: {number}</PhonebookContactsListItemName>
+//                     <DeleteBtn onClick={() => handleDeleteContact(id)}>Delete</DeleteBtn>
+//                     </PhonebookContactsListItem>
+//             )
+//           })
 
-            return (
-                    <PhonebookContactsListItem key={id}>
-                    <PhonebookContactsListItemName>{name}: {number}</PhonebookContactsListItemName>
-                    <DeleteBtn onClick={() => handleDeleteContact(id)}>Delete</DeleteBtn>
-                    </PhonebookContactsListItem>
-            )
-          })
+//         }
+//         </PhonebookContactsList>
+//         );
+// };
 
-        }
-        </PhonebookContactsList>
-        );
-};      
+// export default ContactList;
+
+import { PhonebookContactsList } from "./ContactList.styled";
+import Contact from "../Contact/Contact";
+
+const ContactList = ({ filteredContacts, handleDeleteContact }) => {
+  return (
+    <PhonebookContactsList>
+      {filteredContacts.map(({ name, number, id }) => (
+        <Contact
+          key={id}
+          name={name}
+          number={number}
+          id={id}
+          handleDeleteContact={handleDeleteContact}
+        />
+      ))}
+    </PhonebookContactsList>
+  );
+};
 
 export default ContactList;
